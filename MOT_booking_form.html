@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="MOT_quotation_form.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <form id="MOT_quotation_form">
+            <label for="ED"><h2>select the expiary date of your MOT:</h2></label>
+            <input type="date" id="ED" name="ED">
+            <label for="BD"><h2>select when you want to book the service:</h2></label>
+            <input type="date" id="BD" name="BD">
+            <button type="submit">Submit</button>
+        </form>
+        <script>
+            const edInput = document.getElementById("ED");
+            const bdInput = document.getElementById("BD");
+        
+            const mechanicData = [
+                {
+                    name: "mechanic1",
+                    availability: {
+                        sunday: "",
+                        Monday: "AM",
+                        Tuesday: "PM",
+                        Wednesday: "AM",
+                        Thursday: "PM",
+                        Friday: "AM",
+                        saturday: "AM",
+                    }
+                },
+                {
+                    name: "mechanic2",
+                    availability: {
+                        sunday: "",
+                        Monday: "PM",
+                        Tuesday: "AM",
+                        Wednesday: "PM",
+                        Thursday: "AM",
+                        Friday: "PM",
+                        saturday: "AM",
+                    }
+                },
+                {
+                    name: "mechanic3",
+                    availability: {
+                        sunday: "",
+                        Monday: "AM",
+                        Tuesday: "AM",
+                        Wednesday: "PM",
+                        Thursday: "PM",
+                        Friday: "AM",
+                        saturday: "AM",
+                    }
+                },
+                {
+                    name: "mechanic4",
+                    availability: {
+                        sunday: "",
+                        Monday: "PM",
+                        Tuesday: "PM",
+                        Wednesday: "AM",
+                        Thursday: "AM",
+                        Friday: "PM",
+                        saturday: "PM",
+                    }
+                }
+            ];
+        
+            const weekdays = ["sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "saturday"];
+        
+            document.getElementById("MOT_quotation_form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                const edDate = new Date(edInput.value);
+                const bdDate = new Date(bdInput.value);
+        
+                if (!isNaN(edDate) && !isNaN(bdDate)) {
+                    const timeDiff = edDate.getTime() - bdDate.getTime();
+                    const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                    const day = bdDate.getDay();
+                    const dayName = weekdays[day];
+        
+                 
+                    const availableMechanics = [];
+                    mechanicData.forEach(mechanic => {
+                        const availability = mechanic.availability[dayName];
+                        if (availability === "AM" || availability === "PM") {
+                            availableMechanics.push(mechanic);
+                        }
+                    });
+        
+                    if (availableMechanics.length < 2) {
+                        alert("There are not enough mechanics available at the selected time. Please choose another day.");
+                        return;
+                    }
+        
+                 
+                    const overlay = document.createElement("div");
+                    overlay.id = "overlay";
+                    document.body.appendChild(overlay);
+                    overlay.onclick = function() {
+                        overlay.style.display = "none";
+                    };
+        
+                    const overlayContent = document.createElement("div");
+                    overlayContent.id = "overlayContent";
+                    overlay.appendChild(overlayContent);
+                    overlayContent.onclick = function(event) {
+                        event.stopPropagation();
+                    };
+        
+                   
+                    if (day !== 6) {
+                        if (dayDiff <= 7 && dayDiff >= 0) {
+                            overlayContent.innerHTML = `
+                                <h2>You can book a service for £40 (VAT exclusive).</h2>
+                                <button id="booking" type="submit" onclick='alert("Booking successful! A confirmation email has been sent to you.")'>Book now!</button>
+                            `;
+                        } else if (dayDiff < 0) {
+                            overlayContent.innerHTML = `
+                                <h2>You are booking after the expiration date.<br>An extra charge of 30% is added to the service charge.</h2>
+                                <button id="booking" type="submit" onclick='alert("Booking successful! A confirmation email has been sent to you.")'>Book now!</button>
+                            `;
+                        } else {
+                            overlayContent.innerHTML = `
+                                <h2>No service can be provided before 7 days of the expiration date.</h2>
+                                <button id="booking" type="submit" onclick='alert("Booking successful! A confirmation email has been sent to you.")'>Book now!</button>
+                            `;
+                        }
+                    } else {
+                        if (dayDiff <= 7 && dayDiff >= 0) {
+                            overlayContent.innerHTML = `
+                                <h2>On Saturdays, the service is £40 + 50% surcharge and £50 admin fee (VAT exclusive).</h2>
+                                <button id="booking" type="submit" onclick='alert("Booking successful! A confirmation email has been sent to you.")'>Book now!</button>
+                            `;
+                        } else if (dayDiff < 0) {
+                            overlayContent.innerHTML = `
+                                <h2>You are booking after the expiration date.<br>
+                                An extra 30% charge applies.<br>
+                                On Saturdays, there's also a 50% surcharge and £50 admin fee.</h2>
+                                <button id="booking" type="submit" onclick='alert("Booking successful! A confirmation email has been sent to you.")'>Book now!</button>
+                            `;
+                        } else {
+                            overlayContent.innerHTML = `
+                                <h2>No service can be provided before 7 days of the expiration date.</h2>
+                                <button id="booking" type="submit" onclick='alert("Booking successful! A confirmation email has been sent to you.")'>Book now!</button>
+                            `;
+                        }
+                    }
+                } else {
+                    alert("Please enter valid dates.");
+                }
+            });
+        </script>
+        
+    </body>
+</html>

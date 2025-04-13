@@ -1,0 +1,97 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    background: linear-gradient(148deg,teal,purple);
+    font-family: Roboto;
+}
+
+
+form {
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    border: none;
+    background-color: #ffffff;
+    max-width: 500px;
+    width: 80%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    color: #333;
+}
+
+select {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 0.3rem;
+    cursor: pointer;
+    transition: border 0.2s ease;
+}
+
+select:focus {
+    border-color: #4e54c8;
+    outline: none;
+}
+
+hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid #eee;
+}
+input[type="date"]{
+    width:80%;
+    font-family: Roboto;
+    display: block;
+
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 0.3rem;
+    cursor: pointer;
+    transition: border 0.2s ease;
+}
+button{
+    position:relative;
+    width:100%;
+
+    padding:1rem;
+    background-color: #555;
+    color:white;
+    font-family: Roboto;
+    cursor:pointer;
+}
+button:hover{
+    background-color: #04AA6D;
+}
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    }
+    #overlayContent {
+    background: rgb(249, 249, 249);
+    padding: 20px;
+    max-width: 500px;
+    border-radius: 5px;
+    text-align: center;
+    }

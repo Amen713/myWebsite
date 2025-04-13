@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="others_quotation-form.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <form>
+            <label for="type">choose the vehicle type:</label>
+            <select id="type">
+                <option value="SUV">SUV</option>
+                <option value="minibus">minibus</option>
+                <option value="convertible">convertible</option>
+                <option value="other types">Other types</option>
+            </select>
+            <hr>
+            <label for="mtype">choose the type of the service:</label>
+            <select id="mtype">
+                <option value="Major Repair">Major Repair</option>
+                <option value="Minor Repair">Minor Repair</option>
+                <option value="General service">General service</option>
+                <option value="Health check">Health check</option>
+            </select>
+            <hr>
+            <label for="BD">select when you want to book the service: </label>
+            <input type="date" id="BD" name="BD">
+            <hr>
+            <button type="submit">Submit</button>
+        </form>
+        <script>
+           document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault(); 
+    const BD = document.getElementById("BD");
+    const date = new Date(BD.value);
+    const day = date.getDay();
+    const vehicleType = document.getElementById("type").value;
+    const serviceType = document.getElementById("mtype").value;
+
+    const prices = {
+        "SUV": {
+            "Minor Repair": 450,
+            "Major Repair": 1200,
+            "General service": 200,
+            "Health check": 100
+        },
+        "minibus": {
+            "Minor Repair": 550,
+            "Major Repair": 1500,
+            "General service": 350,
+            "Health check": 150
+        },
+        "convertible": {
+            "Minor Repair": 100,
+            "Major Repair": 800,
+            "General service": 150,
+            "Health check": 50
+        },
+        "other types": {
+            "Minor Repair": 200,
+            "Major Repair": 1000,
+            "General service": 150,
+            "Health check": 70
+        }
+    };
+    const mechanicData = [
+        {
+            name: "mechanic1",
+            availability: {
+                sunday:"",
+                Monday: "AM",
+                Tuesday: "PM",
+                Wednesday: "AM",
+                Thursday: "PM",
+                Friday: "AM",
+                saturday:"AM",
+            }
+        },
+        {
+            name: "mechanic2",
+            availability: {
+                sunday:"",
+                Monday: "PM",
+                Tuesday: "AM",
+                Wednesday: "PM",
+                Thursday: "AM",
+                Friday: "PM",
+                saturday:"AM",
+            }
+        },
+        {
+            name: "mechanic3",
+            availability: {
+                sunday:"",
+                Monday: "AM",
+                Tuesday: "AM",
+                Wednesday: "PM",
+                Thursday: "PM",
+                Friday: "AM",
+                saturday:"AM",
+            }
+        },
+        {
+            name: "mechanic4",
+            availability: {
+                sunday:"",
+                Monday: "PM",
+                Tuesday: "PM",
+                Wednesday: "AM",
+                Thursday: "AM",
+                Friday: "PM",
+                saturday:"PM",
+            }
+        }
+    ];
+    const availableTimes = {
+        "9-12": "AM",
+        "1-5": "PM"
+    };
+  
+        const availableMechanics = [];
+        mechanicData.forEach(mechanic => {
+            let availability = mechanic.availability[Object.keys(mechanic.availability)[day]];
+
+            if (availability === "AM" || availability === "PM") {
+                availableMechanics.push(mechanic);
+            }
+        });
+        if (availableMechanics.length < 2) {
+            alert("There are not enough mechanics available at the selected time. Please choose another day or time.");
+
+        }
+        else{
+            if (!isNaN(day)) {
+                    const selectedPrice = prices[vehicleType][serviceType];
+                    const overlay = document.createElement("div");
+                    overlay.id = "overlay";
+                    document.body.appendChild(overlay);
+                    overlay.onclick = function() {
+                        overlay.style.display = "none";
+                };
+
+                const overlayContent = document.createElement("div");
+                overlayContent.id = "overlayContent";
+                overlay.appendChild(overlayContent);
+                overlayContent.onclick = function(event) {
+                    event.stopPropagation();
+                };
+
+                if (day !== 6) { 
+                    overlayContent.innerHTML = `
+                    <h2>The price for a ${serviceType} service for a ${vehicleType} is £${selectedPrice}.</h2>
+            
+                    <button id="booking" type="button" onclick='alert("Booking successful! A confirmation email has been sent to you.")'>Book now!</button>
+                    `;
+                } else { 
+                    const surcharge = selectedPrice * 0.5; 
+                    const adminFee = 50; 
+                    const totalPrice = selectedPrice + surcharge + adminFee;
+                    overlayContent.innerHTML = `
+                    <h2>The price for a ${serviceType} service for a ${vehicleType} is £${totalPrice} on Saturdays (including surcharge and admin fee).</h2>
+            
+                    <button id="booking" type="button" onclick='alert("Booking successful! A confirmation email has been sent to you.")'>Book now!</button>
+                    `;
+                }
+            }       
+        }
+   
+    }
+    
+);
+
+        </script>
+    </body>
+</html>

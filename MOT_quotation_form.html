@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="MOT_quotation_form.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <form id="MOT_quotation_form">
+            <label for="ED"><h2>select the expiary date of your MOT:</h2></label>
+            <input type="date" id="ED" name="ED">
+            <label for="BD"><h2>select when you want to book the service:</h2></label>
+            <input type="date" id="BD" name="BD">
+            <button type="submit">Submit</button>
+        </form>
+        <script>
+            const edInput = document.getElementById("ED");
+            const bdInput = document.getElementById("BD"); 
+            document.getElementById("MOT_quotation_form").addEventListener("submit",function(e){
+                e.preventDefault();
+                const edDate = new Date(edInput.value);
+                const bdDate = new Date(bdInput.value);
+                if (!isNaN(edDate) && !isNaN(bdDate)) {
+                    const timeDiff =edDate.getTime() - bdDate.getTime();
+                    const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                    const overlay = document.createElement("div");
+                    overlay.id="overlay";
+                    document.body.appendChild(overlay);
+                    overlay.onclick=function(){
+                            overlay.style.display="none";
+                    };
+                    const overlayContent = document.createElement("div");
+                    overlayContent.id="overlayContent";
+                    overlay.appendChild(overlayContent);
+                    overlayContent.onclick=function(event){
+                        event.stopPropagation();
+                    };
+                    const bday =bdDate.getDay();
+                    if (bday!=6){
+                        if(dayDiff <= 7 && dayDiff>=0){
+                            overlayContent.innerHTML=`
+                            <h2>you can book a service for 40 pounds VAT exclusive</h2>
+                            <button id="booking" type="submit" onclick='alert("a quotation email was sent to you")' >get a qutation!</button>
+                        
+                            `;
+                        }else if (dayDiff<0){
+                            overlayContent.innerHTML=`
+                            <h2> you are booking after the expiration date <br> An extra charge of 30% is added to the service charge</h2>
+                            <button id="booking" type="submit" onclick='alert("a quotation email was sent to you")' >get a qutation!</button>
+                        
+                            `;
+
+                        }else{
+                            overlayContent.innerHTML=`
+                            <h2>No service can be provided before 7 days of the expiration date</h2>
+                            <button id="booking" type="submit" onclick='alert("a quotation email was sent to you)' >get a qutation!</button>
+                        
+                            `;
+                        };
+                    }else{
+                        if(dayDiff <= 7 && dayDiff>=0){
+                            overlayContent.innerHTML=`
+                            <h2>on saturdays you can book a service for 40 pounds and extra fee of 50% service charge
+                            and a flat rate of administrative fee of £50 VAT exclusive</h2>
+                            <button id="booking" type="submit" onclick='alert(" a quotation email was sent to you")' >get a qutation!</button>
+                        
+                            `;
+                        }else if (dayDiff<0){
+                            overlayContent.innerHTML=`
+                            <h2> you are booking after the expiration date <br> An extra charge of 30% is added to the service charge<br>on saturdays extra fee of 50% service charge
+                            and a flat rate of administrative fee of £50 </h2>
+                            <button id="booking" type="submit" onclick='alert(" a quotation email was sent to you")' >get a qutation!</button>
+                        
+                            `;
+
+                        }else{
+                            overlayContent.innerHTML=`
+                            <h2>No service can be provided before 7 days of the expiration date </h2>
+                            <button id="booking" type="submit" onclick='alert("a quotation email was sent to you")' >get a qutation!</button>
+                        
+                            `;
+                        };
+                    }
+                };
+            }
+        );
+        </script>
+    </body>
+</html>

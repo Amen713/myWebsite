@@ -1,0 +1,82 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(148deg,teal,purple);
+    height:100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dashboard-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    max-width: 500px;
+  }
+  .header {
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header button {
+    background-color: #fff;
+    color: #4CAF50;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .header button:hover {
+    background-color: #f1f1f1;
+  }
+  .message-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  .message-box h3 {
+    color: #333;
+  }
+  .message {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+  .message p {
+    margin: 5px 0;
+  }
+  .reply-form {
+    margin-top: 15px;
+  }
+  .reply-form textarea {
+
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+  }
+  .reply-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    margin-top: 10px;
+  }
+  .reply-form button:hover {
+    background-color: #45a049;
+  }
+  textarea{
+      max-width: 90%;
+      min-width: 90%;
+
+  }

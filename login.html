@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" >
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="login.css">
+    </head>
+    <body>
+        <form id="loginForm">       
+            <div class="container">
+              <label for="uname"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="uname" required>
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required>
+              <button type="submit">Login</button>
+              <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+              </label>
+            </div>
+            <div class="container" style="background-color:#f1f1f1">
+              <button type="button" class="sign_up" onclick="window.location.href='sign_up.html'">sign up</button>             
+              <span class="psw">Forgot <a style="text-decoration: none;" href="#">password?</a></span>
+            </div>
+  
+          </form>
+    
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const loginForm = document.getElementById("loginForm");
+          loginForm.addEventListener("submit", function(event) {
+              event.preventDefault();
+              const emailValue = document.querySelector("input[name='uname']").value.trim();
+              const passwordValue = document.querySelector("input[name='psw']").value;
+              if (emailValue === "mokraneamine36@gmail.com" && passwordValue === "Amine123") {  
+                  const overlay = document.createElement("div");
+                  overlay.id="overlay";
+                  document.body.appendChild(overlay);
+                  const overlayContent = document.createElement("div");
+                  overlayContent.id="overlayContent";
+                  overlayContent.innerHTML=
+                  `
+                  <h2>login successful as a customer</h2>
+                   <p>choose what do you want to do</p>
+                    <button onclick="window.location.href='quotation.html'">Get quotation about the service for my vehicle type</button>
+                    <button onclick="window.location.href='booking.html'">Book a service</button>`;
+                  overlay.appendChild(overlayContent);
+
+              } else if (emailValue==='mechanic@gmail.com' && passwordValue==='Mechanic'){
+                  window.location.href="mechanic.html";
+              } else if (emailValue==='Admin@gmail.com' && passwordValue==='Admin'){
+                  window.location.href="admin.html";
+              }else{
+                alert("wrong password or email");
+              }
+          });
+        });
+      </script>
+    </body>
+</html> 

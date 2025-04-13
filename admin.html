@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="dashboard-container">
+  <div class="header">
+    <span>Admin Dashboard</span>
+  </div>
+  <div class="message-box">
+    <h3>Customer Messages</h3>
+    <div class="message">
+      <h4>Customer: steve1</h4>
+      <p><strong>Email:</strong> steve1@example.com</p>
+      <p><strong>Message:</strong> I have a question about your services...</p>
+      <div class="reply-form">
+        <textarea placeholder="Write a reply..."></textarea>
+        <button onclick="sendReply(this)">Send Reply</button>
+      </div>
+    </div>
+    <div class="message">
+        <h4>Customer: steve2</h4>
+        <p><strong>Email:</strong> steve2@example.com</p>
+        <p><strong>Message:</strong> I have a question about your services...</p>
+        <div class="reply-form">
+          <textarea placeholder="Write a reply..."></textarea>
+          <button onclick="sendReply(this)">Send Reply</button>
+        </div>
+      </div>
+      <div class="message">
+        <h4>Customer: steve3</h4>
+        <p><strong>Email:</strong> steve3@example.com</p>
+        <p><strong>Message:</strong> I have a question about your services...</p>
+        <div class="reply-form">
+          <textarea placeholder="Write a reply..."></textarea>
+          <button onclick="sendReply(this)">Send Reply</button>
+        </div>
+      </div>
+      <div class="message">
+        <h4>Customer: steve4</h4>
+        <p><strong>Email:</strong> steve4@example.com</p>
+        <p><strong>Message:</strong> I have a question about your services...</p>
+        <div class="reply-form">
+          <textarea placeholder="Write a reply..."></textarea>
+          <button onclick="sendReply(this)">Send Reply</button>
+        </div>
+      </div>
+      <div class="message">
+        <h4>Customer: steve5</h4>
+        <p><strong>Email:</strong> steve5@example.com</p>
+        <p><strong>Message:</strong> I have a question about your services...</p>
+        <div class="reply-form">
+          <textarea placeholder="Write a reply..."></textarea>
+          <button onclick="sendReply(this)">Send Reply</button>
+        </div>
+      </div>
+      <div class="message">
+        <h4>Customer: steve6</h4>
+        <p><strong>Email:</strong> steve6@example.com</p>
+        <p><strong>Message:</strong> I have a question about your services...</p>
+        <div class="reply-form">
+          <textarea placeholder="Write a reply..."></textarea>
+          <button onclick="sendReply(this)">Send Reply</button>
+        </div>
+      </div>
+      <div class="message">
+        <h4>Customer: steve7</h4>
+        <p><strong>Email:</strong> steve7@example.com</p>
+        <p><strong>Message:</strong> I have a question about your services...</p>
+        <div class="reply-form">
+          <textarea placeholder="Write a reply..."></textarea>
+          <button onclick="sendReply(this)">Send Reply</button>
+        </div>
+      </div>
+  </div>
+</div>
+<script>
+    function sendReply(button) {
+      alert('Message sent successfully');
+      const messageBox = button.closest('.message');
+      if (messageBox) {
+        messageBox.remove(); 
+      }
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>       
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="myWebsite.css">
+    </head>
+    <body>
+        <div id="myNav" class="overlay">
+            <a  href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+              <p>
+                Welcome to the city garage, your trusted city centre garage for vehicle repairs, MOT services, and more! We offer expert servicing, health checks, and repairs for a wide range of vehicles, including SUVs, minibuses, convertibles, and more. Our skilled team of mechanics is ready to help, ensuring high-quality service with flexible booking options. Whether you're looking for a quick MOT, a major repair, or a simple health check, we’ve got you covered. 
+                Explore our easy-to-use platform to get instant service quotes, book appointments based on mechanic availability, or contact us for any inquiries. Our admin team is here to assist with your needs, and our mechanics keep track of their availability to ensure smooth scheduling.
+                Book with confidence and get the best care for your vehicle at the city garage!
+              </p>
+            </div>
+          </div>          
+        <div class="header_container">
+            <img class="logo" src="logo.png">
+            <span class="logo_text">The city Garage</span>
+            <div class="icon-bar">
+            <a href="index.html">
+                <i class="fa fa-home"></i>
+                <span class="description">Home</span>
+            </a> 
+            <a href="services.html">
+                <i class="fa fa-cogs"></i>
+                <span class="description">Services</span>
+            </a> 
+            <a href="contact_admin.html">
+                <i class="fa fa-envelope"></i>
+                <span class="description">Contact admin</span>
+            </a> 
+            <a href="login.html">
+                <i class="fa fa-sign-in"></i>
+                <span class="description">Join us</span>
+            </a>
+            </div>
+        </div> 
+        <br>
+        <div class="img_container"> 
+            <div class="images">         
+                <img class="slide" src="car.png">
+                <img class="slide" src="worker.png">
+                <img class="slide" src="garage.png"> 
+            </div>
+            <div class="text">
+                <h2>Welcome to the city garage<br>               
+                </h2>
+                <span  id="more" onclick="openNav()">Read more about us!</span>
+            </div>              
+            <div>
+            </div>        
+        </div>
+        <div class="big_column">
+            <div class="why_us_container">
+                    <h2>Why us?</h2>
+                    <div class="tab">
+                        <button style="font-family: Roboto;" class="tablinks" onmouseover="openInfo(event, 'Expert')">Expert Repairs You Can Trust</button>
+                        <button style="font-family: Roboto;" class="tablinks" onmouseover="openInfo(event, 'Prices')">Friendly Service, Fair Prices</button>
+                        <button style="font-family: Roboto;" class="tablinks" onmouseover="openInfo(event, 'Timely')">Timely Service Without the Hassle</button>
+                    </div>
+                    <div id="Expert" class="tabcontent">            
+                        <p style="font-family: Roboto;">Skilled technicians, honest diagnostics, and no surprises—just quality work every time.</p>
+                    </div>             
+                    <div id="Prices" class="tabcontent">         
+                        <p style="font-family: Roboto;">No upselling, no pressure—just down-to-earth service <br> with transparent pricing.</p>
+                    </div>              
+                    <div id="Timely" class="tabcontent">                    
+                        <p style="font-family: Roboto;">Efficient turnarounds that respect your schedule—<br>no delays, no guesswork.</p>
+                    </div>
+            </div>
+            <footer class="footer">
+                <h2>Follow us</h2>
+                <div class="social">
+                    <a href="#" id="fb" class="fa fa-facebook"></a>
+                    <a  href="#" id="tw" class="fa fa-twitter"></a>
+                    <a  href="#" id="ins" class="fa fa-instagram"></a>
+                    <p>&copy; 2025 City Centre Garage. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>  
+        <script src="myWebsite.js"></script>
+    </body>
+</html> 

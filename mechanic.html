@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="mechanic.css">
+  <title>Mechanic Availability</title>
+</head>
+<body>
+<div class="container">
+  <h2>Mechanic Availability</h2>
+  <form id="mechanicForm">
+    <label for="username">Mechanic Name:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label>Select Available Days & Times:</label>
+    <div class="availability-group">
+      <div class="availability-item">
+        <label>Monday:</label>
+        <select name="monday">
+          <option value="">Unavailable</option>
+          <option value="9am - 12pm">9am - 12pm</option>
+          <option value="1pm - 5pm">1pm - 5pm</option>
+        </select>
+      </div>
+      <div class="availability-item">
+        <label>Tuesday:</label>
+        <select name="tuesday">
+          <option value="">Unavailable</option>
+          <option value="9am - 12pm">9am - 12pm</option>
+          <option value="1pm - 5pm">1pm - 5pm</option>
+        </select>
+      </div>
+      <div class="availability-item">
+        <label>Wednesday:</label>
+        <select name="wednesday">
+          <option value="">Unavailable</option>
+          <option value="9am - 12pm">9am - 12pm</option>
+          <option value="1pm - 5pm">1pm - 5pm</option>
+        </select>
+      </div>
+      <div class="availability-item">
+        <label>Thursday:</label>
+        <select name="thursday">
+          <option value="">Unavailable</option>
+          <option value="9am - 12pm">9am - 12pm</option>
+          <option value="1pm - 5pm">1pm - 5pm</option>
+        </select>
+      </div>
+      <div class="availability-item">
+        <label>Friday:</label>
+        <select name="friday">
+          <option value="">Unavailable</option>
+          <option value="9am - 12pm">9am - 12pm</option>
+          <option value="1pm - 5pm">1pm - 5pm</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit">Submit Availability</button>
+  </form>
+</div>
+
+<script>
+        const mechanicForm = document.getElementById("mechanicForm");
+        mechanicForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const mechanicName = document.getElementById("username").value.trim();
+        const validUsernames = ["mechanic1", "mechanic2", "mechanic3", "mechanic4"];
+        if (!validUsernames.includes(mechanicName)) {
+            alert("Wrong username! Please enter a valid username.");
+        }
+        const availability = {
+            Monday: mechanicForm.elements["monday"].value,
+            Tuesday: mechanicForm.elements["tuesday"].value,
+            Wednesday: mechanicForm.elements["wednesday"].value,
+            Thursday: mechanicForm.elements["thursday"].value,
+            Friday: mechanicForm.elements["friday"].value
+        };
+        const mechanicData = {
+            name: mechanicName,
+            availability: availability
+        };
+        console.log("Mechanic Data:", mechanicData);
+        alert("Availability submitted successfully!");
+        });
+
+</script>
+
+</body>
+</html>
